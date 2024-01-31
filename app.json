@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "TourMedDriver",
+    "slug": "TourMedDriver",
+    "scheme": "apptourmeddriver",
+    "owner": "tarakan07",
+    "version": "1.0.5",
+    "orientation": "portrait",
+    "icon": "./assets/adaptive-icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "backgroundColor": "#fff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAmZjB8akSPV4EeJsJoXblVDYB9T5BHhpE"
+        }
+      },
+      "package": "com.tarakan07.TurMedDriver"
+    },
+    "web": {
+      "favicon": "./assets/adaptive-icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c81f1e9c-fe9c-4a18-af2c-e0c3f612e224"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/c81f1e9c-fe9c-4a18-af2c-e0c3f612e224"
+    },
+    "ios": {
+      "bundleIdentifier": "com.tarakan07.TourMedDriver"
+    }
+  }
+}

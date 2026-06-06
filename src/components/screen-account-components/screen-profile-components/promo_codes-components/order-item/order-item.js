@@ -17,7 +17,7 @@ const OrderItem = ({ order }) => {
 				</Text>
 			</View>
 			<View>
-				{products.map((item, index) => {
+				{products && Array.isArray(products) && products.map((item, index) => {
 					return (
 						<View
 							key={item.id}

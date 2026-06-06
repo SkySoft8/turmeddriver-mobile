@@ -3,14 +3,14 @@
     "name": "TourMedDriver",
     "slug": "TourMedDriver",
     "scheme": "apptourmeddriver",
-    "owner": "tarakan07",
+    "owner": "arkuleba",
     "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/adaptive-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
-      "backgroundColor": "#fff"
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,27 +22,36 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyAmZjB8akSPV4EeJsJoXblVDYB9T5BHhpE"
+          "apiKey": "AIzaSyDyS2EssmRbVcT-VtAQiHI0EV6ipsQNIc0"
         }
       },
-      "package": "com.tarakan07.TurMedDriver"
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "package": "com.arkuleba.TurMedDriver"
     },
     "web": {
       "favicon": "./assets/adaptive-icon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "c81f1e9c-fe9c-4a18-af2c-e0c3f612e224"
-      }
     },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/c81f1e9c-fe9c-4a18-af2c-e0c3f612e224"
+      "url": "https://u.expo.dev/d62bed4f-efcb-466f-b9f1-d949e34f35ef"
     },
     "ios": {
-      "bundleIdentifier": "com.tarakan07.TourMedDriver"
+      "bundleIdentifier": "com.arkuleba.TourMedDriver"
+    },
+    "plugins": [
+      "expo-dev-client",
+      "expo-font",
+      "expo-location"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d62bed4f-efcb-466f-b9f1-d949e34f35ef"
+      }
     }
   }
 }

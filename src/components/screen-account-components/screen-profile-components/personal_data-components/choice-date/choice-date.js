@@ -34,7 +34,7 @@ const ChoiceDate = ({ setData, initValue }) => {
 			<Text style={styles.changeDateText} onPress={showDatepicker}>
 				Изменить
 			</Text>
-			{show && (
+			{show && show === true && (
 				<DateTimePicker
 					testID="dateTimePicker"
 					value={initState}

@@ -1,11 +1,11 @@
 import axios from "axios";
 export default class ServerAPI {
-	_api_url_public = "https://tourmeddriver.com/public/api";
-	_api_url = "https://tourmeddriver.com/api";
+	_api_url_public = "https://centrunity.com/api";
+	_api_url = "https://centrunity.com/api";
 
 	//get All users
 	getUsersData = async () => {
-		const res = await axios.get(`${this._api_url_public}/users`);
+		const res = await axios.get(`${this._api_url}/users`);
 		return res.data.data;
 	};
 
@@ -59,20 +59,48 @@ export default class ServerAPI {
 	getProductsData = async (objType) => {
 		const fetchAllData = async () => {
 			let data = {};
-			for (key in objType) {
-				if (key === "key") {
-					data = {
-						...data,
-						productsDataList: await axios
-							.post(`${this._api_url_public}/${objType[key]}`, {})
-							.then((res) => res.data.data)
-							.catch((error) => console.log(error.response)),
-					};
-				} else {
-					data[key] = await axios
-						.get(`${this._api_url_public}/${objType[key]}`, {})
-						.then((res) => res.data.data)
-						.catch((error) => console.log(error.response));
+			for (const key in objType) {
+				try {
+					const endpoint = objType[key];
+					let response;
+					if (key === "key") {
+						// Products list (centers, resorts, etc.) requires POST
+						response = await axios.post(
+							`${this._api_url_public}/${endpoint}`,
+							{},
+							{
+								headers: {
+									'Accept': 'application/json, text/plain, */*',
+									'Content-Type': 'application/json',
+									'X-Requested-With': 'XMLHttpRequest',
+								},
+							}
+						);
+						data = {
+							...data,
+							productsDataList: response.data.data || [],
+						};
+					} else {
+						// Lists for preferences, categories, items, services require GET
+						response = await axios.get(`${this._api_url_public}/${endpoint}`, {
+							headers: {
+								'Accept': 'application/json, text/plain, */*',
+								'X-Requested-With': 'XMLHttpRequest',
+							},
+						});
+						data[key] = response.data.data || [];
+					}
+				} catch (error) {
+					console.log(`Ошибка при получении данных для ${key}:`, error.response?.data || error.message);
+					// Устанавливаем пустой массив в случае ошибки
+					if (key === "key") {
+						data = {
+							...data,
+							productsDataList: []
+						};
+					} else {
+						data[key] = [];
+					}
 				}
 			}
 			return data;

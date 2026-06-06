@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Dimensions, Pressable } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import ArrowSlider from "assets/svg/arrowSlider";
+import THEME from "src/THEME";
 
 const SliderHotel = ({ images }) => {
 	const [slidePos, setSlidePos] = useState(0);

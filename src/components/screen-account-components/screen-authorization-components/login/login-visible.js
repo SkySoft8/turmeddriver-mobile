@@ -49,7 +49,7 @@ const LoginVisible = ({
 					<Text style={[styles.wrapAnswerText, { color: message.color }]}>
 						{message.text}
 					</Text>
-					{loading && <LoadingSpinner />}
+					{loading && loading === true && <LoadingSpinner />}
 				</View>
 
 				<View style={styles.form}>

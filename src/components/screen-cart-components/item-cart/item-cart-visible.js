@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Pressable, Dimensions } from "react-native";
 import IconArrowCart from "assets/svg/iconArrowCart";
 import { VisibleImage } from "src/UTILS";
 import IncludedServicesCart from "src/components/screen-cart-components/included-services-cart";
+import THEME from "src/THEME";
 const ItemCartVisible = ({
 	choice,
 	titleCategory,
@@ -59,7 +60,7 @@ const ItemCartVisible = ({
 							<Text style={styles.cartTitle}>{title}</Text>
 
 							<Text style={styles.cartDescr}>
-								{category && category} {`(${countPerson} чел.)`}
+								{category ? `${category} ` : ''}{`(${countPerson} чел.)`}
 							</Text>
 						</View>
 						<View style={styles.infoCartBottom}>
@@ -70,7 +71,7 @@ const ItemCartVisible = ({
 						<Text style={styles.cartPrice}>{total_price}р</Text>
 					</View>
 				</Pressable>
-				{productList.length > 0 && (
+				{productList && productList.length > 0 && (
 					<View style={styles.cartIncludeServices}>
 						<Pressable>
 							<View style={styles.wrapArrow}>

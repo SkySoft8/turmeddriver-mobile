@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { Text, StyleSheet, TextInput } from "react-native";
+import THEME from "src/THEME";
 
 const CreateInput = ({
 	change = true,

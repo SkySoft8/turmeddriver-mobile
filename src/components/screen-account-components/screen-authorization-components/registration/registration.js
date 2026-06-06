@@ -56,8 +56,10 @@ const Registration = ({
 			changeState();
 			return;
 		}
-		if (usersList) {
-			const haveUser = usersList.find((el) => el.email == data.email);
+
+		const safeUsersList = usersList || [];
+		if (safeUsersList.length > 0) {
+			const haveUser = safeUsersList.find((el) => el.email == data.email);
 			if (haveUser) {
 				setMessage("Такой пользователь существует.");
 				setTimeout(() => {

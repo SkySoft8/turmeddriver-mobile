@@ -1,10 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View as RNView, Text as RNText, StyleSheet as RNStyleSheet, Pressable as RNPressable } from "react-native"; // keep existing React Native imports
+import { View as _View } from "react-native"; // avoid accidental removal by editor
+import { View as __View } from "react-native"; // idem
+import { View as ___View } from "react-native"; // idem
 
 import { fetchRemoveFromCart, fetchGetCart } from "src/redux/fetch/fetchCart";
 import { connect } from "react-redux";
 import GoBack from "../go-back";
 import Delete from "../delete";
+import THEME from "src/THEME";
 const HeaderCart = ({
 	goBack,
 	title,
@@ -20,7 +25,7 @@ const HeaderCart = ({
 		await removeFromCart(cartChoiceProduct).then(() => getCart(activeUser.id));
 	};
 	const compGoBack = goBack && <GoBack navigation={navigation} />;
-	const compDelete = countChoice > 0 && <Delete removeAction={removeAction} />;
+	const compDelete = countChoice && countChoice > 0 && <Delete removeAction={removeAction} />;
 	return (
 		<View style={styles.container}>
 			<View>{compGoBack}</View>
@@ -34,9 +39,10 @@ const HeaderCart = ({
 
 const Title = ({ title, countCart, countChoice }) => {
 	const getTitle = () => {
-		if (countCart < 1 && countChoice < 1) return title;
-		if (countChoice > 0) return `Выбрано: ${countChoice}`;
-		if (countCart > 0 && countChoice < 1) return `${title} (${countCart})`;
+		if ((!countCart || countCart < 1) && (!countChoice || countChoice < 1)) return title;
+		if (countChoice && countChoice > 0) return `Выбрано: ${countChoice}`;
+		if (countCart && countCart > 0 && (!countChoice || countChoice < 1)) return `${title} (${countCart})`;
+		return title; // fallback
 	};
 
 	return <Text style={styles.titleText}>{getTitle()}</Text>;

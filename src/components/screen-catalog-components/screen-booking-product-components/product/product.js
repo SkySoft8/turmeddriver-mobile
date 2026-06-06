@@ -10,7 +10,7 @@ const Product = ({ roomData, productItem, productsType }, ref) => {
 	//if have room data, then get preview image from array roomData
 	if (roomData != null) {
 		const { id, title, price, category } = roomData;
-		for (key in roomData) {
+		for (const key in roomData) {
 			if (key.indexOf("preview_image") > 1) preview_image = roomData[key];
 		}
 		//and create init state
@@ -33,7 +33,7 @@ const Product = ({ roomData, productItem, productsType }, ref) => {
 
 					<Text style={styles.productDescr}>{product.title}</Text>
 				</View>
-				{product.price && (
+				{product.price && product.price !== "" && (
 					<View style={styles.columnPrice}>
 						<Text style={styles.productPrice}>{product.price}р</Text>
 						{keyItem == "sanatorium" ||

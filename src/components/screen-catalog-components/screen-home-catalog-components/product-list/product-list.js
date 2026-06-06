@@ -19,7 +19,7 @@ const ProductList = ({
 	fetchItemProductById,
 	productsType,
 }) => {
-	if (productsDataList.length == 0) {
+	if (!productsDataList || productsDataList.length === 0) {
 		return (
 			<Text
 				style={{

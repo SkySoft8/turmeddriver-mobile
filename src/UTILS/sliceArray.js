@@ -1,9 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import CheckMark from "../../assets/svg/checkmark";
+import THEME from "src/THEME";
 
-const SliceArray = ({ data }) => {
+const SliceArray = ({ data = [] }) => {
 	const sliceArray = (array) => {
+		if (!array || !Array.isArray(array)) return [[], []];
 		let newArray = [[], []];
 		array.map((el, index) => {
 			if (Math.ceil(array.length / 2) > index) newArray[0].push(el);

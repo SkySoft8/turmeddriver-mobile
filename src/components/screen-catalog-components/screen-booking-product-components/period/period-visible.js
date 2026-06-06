@@ -21,7 +21,7 @@ const PeriodVisible = ({
 					keyValue={"periodStart"}
 				/>
 			</View>
-			{haveRoomData && (
+			{haveRoomData && haveRoomData === true && (
 				<View style={[styles.dateEnd, styles.dateColumn]}>
 					<Text>Окончание поездки</Text>
 					<PeriodChoice

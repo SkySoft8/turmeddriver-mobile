@@ -40,7 +40,7 @@ const OrderItemContentVisible = ({
 							</Text>
 							<Text style={styles.orderPeriod}>
 								{getDate(date).dateStart}
-								{getDate(date).dateEnd && `- ${getDate(date).dateEnd}`}
+								{getDate(date).dateEnd ? `- ${getDate(date).dateEnd}` : ''}
 							</Text>
 						</View>
 						<View style={styles.itemColumnPrice}>

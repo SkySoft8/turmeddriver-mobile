@@ -18,8 +18,8 @@ const Period = ({ haveRoomData, productsType }, ref) => {
 
 	useEffect(() => {
 		if (
-			period.periodStart.visible.length > 0 &&
-			period.periodEnd.visible.length > 0
+			period.periodStart.visible && period.periodStart.visible.length > 0 &&
+			period.periodEnd.visible && period.periodEnd.visible.length > 0
 		) {
 			if (
 				productsType.keyItem == "sanatorium" ||
@@ -37,7 +37,7 @@ const Period = ({ haveRoomData, productsType }, ref) => {
 
 	const changePeriod = (key, value, visible) => {
 		//if not set periodStart, periodEnd must not use
-		if (key === "periodEnd" && period.periodStart.value.length == 0) {
+		if (key === "periodEnd" && (!period.periodStart.value || period.periodStart.value.length == 0)) {
 			return;
 		} else setPeriod({ ...period, [key]: { visible, value } });
 	};

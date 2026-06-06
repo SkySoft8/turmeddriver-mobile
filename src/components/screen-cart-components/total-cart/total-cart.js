@@ -20,7 +20,7 @@ const TotalCart = ({
 	} else {
 		const redirectToBank = async () => {
 			await cartPayment(activeUser.id).then((el) => {
-				if (el.payload.formUrl && !error) {
+				if (el.payload && el.payload.formUrl && !error) {
 					Linking.openURL(`${el.payload.formUrl}`);
 				}
 			});

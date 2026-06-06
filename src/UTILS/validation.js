@@ -1,8 +1,8 @@
-export default validation = (data, emptyFiled = true) => {
+export const validation = (data, emptyFiled = true) => {
 	let errorFields = [];
 	let reg =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	for (key in data) {
+	for (const key in data) {
 		if (emptyFiled && !data[key].length) errorFields.push(key);
 		if (key === "email" && !reg.test(data.email)) errorFields.push(key);
 		if (key === "passwordRepeat" && data.passwordRepeat != data.password)
@@ -14,3 +14,5 @@ export default validation = (data, emptyFiled = true) => {
 		errors: errorFields,
 	};
 };
+
+export default validation;

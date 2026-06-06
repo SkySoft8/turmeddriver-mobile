@@ -27,7 +27,7 @@ const BookingBlock = ({
 	const createArrayServices = (services) => {
 		//array for product list
 		let newServices = [];
-		if (!services) return newServices;
+		if (!services || !Array.isArray(services)) return newServices;
 		services.map((serv) => {
 			newServices.push({
 				id: serv.id,
@@ -46,7 +46,7 @@ const BookingBlock = ({
 		countPerson,
 		services,
 	}) => {
-		const periodDate = `${period.periodStart.visible}`; //may be will have time
+		const periodDate = `${period.periodStart?.visible || ''}`; //may be will have time
 
 		return {
 			date: periodDate,
@@ -67,9 +67,9 @@ const BookingBlock = ({
 		services,
 	}) => {
 		const periodDate =
-			period.periodEnd.visible.length > 0
-				? [period.periodStart.visible, period.periodEnd.visible]
-				: [period.periodStart.visible, period.periodStart.visible];
+			period.periodEnd && period.periodEnd.visible && period.periodEnd.visible.length > 0
+				? [period.periodStart?.visible || '', period.periodEnd.visible]
+				: [period.periodStart?.visible || '', period.periodStart?.visible || ''];
 
 		return {
 			id: productInfo.id,
@@ -125,10 +125,11 @@ const BookingBlock = ({
 		};
 	};
 
-	const createSentObject = () => {
-		const { period, productInfo } = product.current.setObjectToCart();
+    const createSentObject = () => {
+        const { period, productInfo } = product.current.setObjectToCart();
 
-		if (!period || total < 1) return null;
+        // Allow zero-total (free) bookings; only require a selected period
+        if (!period) return null;
 
 		const preOrderDate = period
 			? period.periodEnd.visible.length > 0
@@ -204,7 +205,7 @@ const BookingBlock = ({
 				changeTotal={changeTotal}
 				productsType={productsType}
 			/>
-			{loading && <LoadingSpinner />}
+			{loading && loading === true && <LoadingSpinner />}
 			<AddToCart total={total} sendBookingToCart={sendBookingToCart} />
 		</View>
 	);

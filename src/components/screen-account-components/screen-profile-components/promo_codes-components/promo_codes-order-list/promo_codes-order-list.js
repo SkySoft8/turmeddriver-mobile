@@ -27,7 +27,7 @@ const PromoCodesOrderList = ({
 	return (
 		<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
 			<View style={styles.wrapOrderList}>
-				{paymentsList.length > 0 &&
+				{paymentsList && paymentsList.length > 0 &&
 					paymentsList.map((order, ind) => {
 						return (
 							<View key={order.id} style={{ paddingTop: ind == 0 ? 0 : 25 }}>

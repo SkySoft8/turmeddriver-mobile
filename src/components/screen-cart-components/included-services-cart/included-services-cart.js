@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Animated, Dimensions } from "react-native";
 import THEME from "src/THEME";
-const IncludedServicesCart = ({ showServices, services }) => {
+const IncludedServicesCart = ({ showServices, services = [] }) => {
 	const animHeight = useRef(new Animated.Value(0)).current;
 	const factor = 1 / (Dimensions.get("window").width / 411);
 	const startShowServices = () => {

@@ -5,14 +5,14 @@ import TitleBlock from "./../title-block/index";
 import THEME from "src/THEME";
 const PriceServices = ({
 	title = "Услуги",
-	cartCategory,
-	cartItemCategory,
+	cartCategory = [],
+	cartItemCategory = [],
 }) => {
 	return (
 		<View style={styles.container}>
 			<TitleBlock title={title} />
 
-			{cartCategory.map((cart, index) => {
+			{cartCategory && Array.isArray(cartCategory) && cartCategory.map((cart, index) => {
 				return (
 					<View
 						key={cart.id}
@@ -22,13 +22,13 @@ const PriceServices = ({
 						]}
 					>
 						<Text style={styles.titleBlockServices}>{cart.title}</Text>
-						{cartItemCategory.map((cartItem) => {
+						{cartItemCategory && Array.isArray(cartItemCategory) && cartItemCategory.map((cartItem) => {
 							if (cartItem.todo_list_id === cart.id)
 								return (
 									<View key={cartItem.id} style={styles.rowService}>
 										<Text style={styles.serviceText}>{cartItem.title}</Text>
 										<Text numberOfLines={1} style={styles.servicePrice}>
-											{cartItem.price.replace("р", "")}p
+											{cartItem.price ? cartItem.price.replace("р", "") : ""}p
 										</Text>
 									</View>
 								);

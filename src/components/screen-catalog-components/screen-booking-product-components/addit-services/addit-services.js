@@ -7,17 +7,20 @@ import React, {
 
 import AdditServicesVisible from "../addit-services-visible";
 const AdditServices = ({ changeTotal, bookingAddServices, roomData }, ref) => {
-	const { cartCategory, cartItemCategory } = bookingAddServices;
+	const { cartCategory, cartItemCategory = [] } = bookingAddServices || {};
 
 	//crate new array in init state with new field *count*, and replace field price
-	let cartItemInitial = [
-		...cartItemCategory.map((item) => ({
-			...item,
-			["price"]:
-				item["price"] == "бесплатно" ? "0" : item["price"].replace("р", ""),
-			["count"]: 0,
-		})),
-	];
+	let cartItemInitial = [];
+	if (cartItemCategory && Array.isArray(cartItemCategory)) {
+		cartItemInitial = [
+			...cartItemCategory.map((item) => ({
+				...item,
+				["price"]:
+					item["price"] == "бесплатно" ? "0" : item["price"].replace("р", ""),
+				["count"]: 0,
+			})),
+		];
+	}
 
 	const [services, setServices] = useState({
 		cartItemCategory: cartItemInitial,
@@ -54,10 +57,10 @@ const AdditServices = ({ changeTotal, bookingAddServices, roomData }, ref) => {
 	};
 
 	const changeServices = useCallback((cartItem, ind) => {
-		if (ind == 1 && cartItem.count != 9) {
+		if (ind == 1) {
 			setStateServices(cartItem, ind);
 		}
-		if (ind == -1 && cartItem.count != 0) {
+		if (ind == -1 && cartItem.count > 0) {
 			setStateServices(cartItem, ind);
 		}
 	}, []);

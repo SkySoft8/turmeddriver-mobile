@@ -4,7 +4,8 @@ import "expo-dev-client";
 import * as SplashScreen from "expo-splash-screen";
 import { useState, useEffect, useCallback } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import initProject from "src/INIT-PROJECT";
+import { useFonts } from "expo-font";
+import initProject, { fontAssets } from "src/INIT-PROJECT";
 
 import { Provider } from "react-redux";
 import { store } from "src/redux/store";
@@ -16,6 +17,7 @@ const prefix = Linking.createURL("/");
 SplashScreen.preventAutoHideAsync();
 export default function App() {
 	const [appReady, setAppReady] = useState(false);
+	const [fontsLoaded] = useFonts(fontAssets);
 
 	//deep links
 	const config = {
@@ -46,14 +48,24 @@ export default function App() {
 		prepareApp();
 	}, []);
 
+	useEffect(() => {
+		if (fontsLoaded && appReady) {
+			setAppReady(true);
+		}
+	}, [fontsLoaded, appReady]);
+
 	const onLayoutAppView = useCallback(async () => {
 		if (appReady) {
 			await SplashScreen.hideAsync();
 		}
 	}, [appReady]);
 
-	if (!appReady) {
-		return <Text>Error with prepare app!</Text>;
+	if (!appReady || !fontsLoaded) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>Loading...</Text>
+			</View>
+		);
 	}
 
 	return (

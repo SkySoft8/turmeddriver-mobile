@@ -11,8 +11,8 @@ const HeaderAccount = ({
 	changeAccessEdit,
 	accessEdit,
 }) => {
-	const compGoBack = goBack && <GoBack navigation={navigation} />;
-	const compEdit = activeEdit && (
+	const compGoBack = goBack && goBack === true && <GoBack navigation={navigation} />;
+	const compEdit = activeEdit && activeEdit === true && (
 		<Edit changeAccessEdit={changeAccessEdit} accessEdit={accessEdit} />
 	);
 	return (

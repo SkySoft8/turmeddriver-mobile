@@ -18,8 +18,8 @@ const RegistrationVisible = ({
 				<IconProfile />
 				<View style={styles.form}>
 					<View style={styles.blockMessage}>
-						{loading && <LoadingSpinner />}
-						{message && <Text style={styles.textMessage}>{message}</Text>}
+						{loading && loading === true && <LoadingSpinner />}
+						{message && message !== "" && <Text style={styles.textMessage}>{message}</Text>}
 					</View>
 					<View style={styles.row}>
 						<CreateInput

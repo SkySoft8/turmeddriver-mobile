@@ -34,7 +34,7 @@ const IncludedServices = ({ showServices, services = [] }) => {
 							{service.product}
 						</Text>
 						<Text style={styles.count}>
-							{service.qty > 0 && `(${service.qty} шт)`}
+							{service.qty > 0 ? `(${service.qty} шт)` : ''}
 						</Text>
 						<Text style={styles.price}>{service.price}р</Text>
 					</View>

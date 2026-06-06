@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
+import THEME from "src/THEME";
 import { CreateInput, CreateButton } from "src/UTILS";
 
 import ChoiceGender from "../choice-gender";

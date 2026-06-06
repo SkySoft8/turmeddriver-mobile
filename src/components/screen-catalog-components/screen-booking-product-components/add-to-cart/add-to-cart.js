@@ -33,12 +33,14 @@ const AddToCart = ({ total, sendBookingToCart }) => {
 						<Text style={styles.totalDescr}>(оплата на месте)</Text>
 					</View>
 					<View>
-						<Text style={styles.totalCount}>{total}р</Text>
+						<Text style={styles.totalCount}>
+							{total > 0 ? `${total}р` : 'Бесплатно'}
+						</Text>
 					</View>
 				</View>
 
 				<Pressable
-					style={[styles.totalBtn, { opacity: total < 1 ? 0.7 : 1 }]}
+					style={styles.totalBtn}
 					onPress={setCart}
 				>
 					<CreateButton text={titleBtn.text} />

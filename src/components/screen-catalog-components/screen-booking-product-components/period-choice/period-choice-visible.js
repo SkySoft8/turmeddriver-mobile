@@ -28,7 +28,7 @@ const PeriodChoiceVisible = ({
 				<IconCalendar />
 			</Pressable>
 
-			{show && (
+			{show && show === true && (
 				<DateTimePicker
 					testID="dateTimePicker"
 					value={date}

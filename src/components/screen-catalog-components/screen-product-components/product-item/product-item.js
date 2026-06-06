@@ -12,6 +12,10 @@ import CreateComment from "../create-comment";
 import ProductMap from "../product-map";
 import { filterData, filterItemCategory } from "src/UTILS/filterDataServices";
 const ProductItem = ({ productData, productsType }) => {
+	if (!productData || !productData.productItem) {
+		return null;
+	}
+
 	const {
 		id,
 		user_id,
@@ -58,10 +62,10 @@ const ProductItem = ({ productData, productsType }) => {
 			)}
 
 			<GeneralInformation content={content} address={address} phone={phone} />
-			{arrayPreferences.length > 0 && (
+			{arrayPreferences && arrayPreferences.length > 0 && (
 				<Preferences preferences={arrayPreferences} />
 			)}
-			{arrayServicesAndAmenities.length > 0 && (
+			{arrayServicesAndAmenities && arrayServicesAndAmenities.length > 0 && (
 				<ServicesAndAmenities services={arrayServicesAndAmenities} />
 			)}
 			{productsType.rooms && (
@@ -72,7 +76,7 @@ const ProductItem = ({ productData, productsType }) => {
 				/>
 			)}
 
-			{arrayCartCategory.length > 0 && (
+			{arrayCartCategory && arrayCartCategory.length > 0 && (
 				<PriceServices
 					title={"Услуги"}
 					cartCategory={arrayCartCategory}

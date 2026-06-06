@@ -50,8 +50,8 @@ const BookingItems = (
 			/>
 
 			{/* because in roomData have count persons on default */}
-			{!roomData && <CountPersons ref={countPersonRef} />}
-			{bookingAddServices && (
+			{(!roomData || roomData === false) && <CountPersons ref={countPersonRef} />}
+			{bookingAddServices && bookingAddServices !== false && (
 				<AdditServices
 					ref={additServicesRef}
 					bookingAddServices={bookingAddServices}

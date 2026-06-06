@@ -1,14 +1,19 @@
-import * as Font from "expo-font";
+import { useFonts } from "expo-font";
 import { PermissionsAndroid } from "react-native";
 import { StorageAccessFramework } from "expo-file-system";
+
+const fontAssets = {
+	"Inter-Black": require("../../assets/fonts/Inter-Black.ttf"),
+	"Inter-Bold": require("../../assets/fonts/Inter-Bold.ttf"),
+	"Inter-Light": require("../../assets/fonts/Inter-Light.ttf"),
+	"Inter-Medium": require("../../assets/fonts/Inter-Medium.ttf"),
+	"Inter-Regular": require("../../assets/fonts/Inter-Regular.ttf"),
+};
+
 const loadFonts = async () => {
-	await Font.loadAsync({
-		"Inter-Black": require("../../assets/fonts/Inter-Black.ttf"),
-		"Inter-Bold": require("../../assets/fonts/Inter-Bold.ttf"),
-		"Inter-Light": require("../../assets/fonts/Inter-Light.ttf"),
-		"Inter-Medium": require("../../assets/fonts/Inter-Medium.ttf"),
-		"Inter-Regular": require("../../assets/fonts/Inter-Regular.ttf"),
-	});
+	// В SDK 53 шрифты загружаются через useFonts hook
+	// Этот код будет обновлен в App.js
+	return Promise.resolve();
 };
 
 const permissionsProject = async () => {
@@ -34,3 +39,4 @@ const initProject = async () => {
 };
 
 export default initProject;
+export { fontAssets };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import THEME from "src/THEME";
-import HeaderCatalog from "./../../components/header-components/header-catalog";
 import { CreateButton } from "src/UTILS";
 import { fetchRemoveFromCart, fetchGetCart } from "src/redux/fetch/fetchCart";
 import { fetchPaymentsData } from "src/redux/fetch/fetchPayment";
@@ -19,7 +18,7 @@ const SuccessPaymentScreen = ({ navigation }) => {
 				.then(() => dispatch(fetchGetCart(user.activeUser.id)))
 				.then(async () => {
 					return await axios.get(
-						`https://tourmeddriver.com/api/payment/status/${user.activeUser.id}`
+						`https://centrunity.com/api/payment/status/${user.activeUser.id}`
 					);
 				})
 				.then(() => dispatch(fetchPaymentsData(user.activeUser.id)))

@@ -28,9 +28,9 @@ const CommentList = ({
 	return (
 		<View style={styles.container}>
 			<TitleBlock title={"Отзывы"} />
-			{loading && <LoadingSpinner />}
+			{loading && loading === true && <LoadingSpinner />}
 			<View style={styles.blockReviews}>
-				{commentList.map((comment, ind) => {
+				{commentList && Array.isArray(commentList) && commentList.map((comment, ind) => {
 					return (
 						<View
 							key={comment.id}

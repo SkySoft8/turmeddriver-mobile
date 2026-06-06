@@ -20,7 +20,7 @@ const SliderImages = ({ mainImage, title, imagesData = [] }) => {
 					<VisibleImage style={styles.mainImage} source={images.activeImage} />
 				</View>
 				<View style={styles.blockImagesWrap}>
-					{images.imagesList.length > 1 &&
+					{images.imagesList && images.imagesList.length > 1 &&
 						images.imagesList[1] != null &&
 						images.imagesList.map((imageItem, index) => {
 							return (

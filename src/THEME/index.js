@@ -1,4 +1,4 @@
-export default THEME = {
+const THEME = {
 	font: {
 		InterLight: "Inter-Light", //300
 		InterRegular: "Inter-Regular", //400
@@ -14,3 +14,5 @@ export default THEME = {
 		green: "#51D3B7",
 	},
 };
+
+export default THEME;

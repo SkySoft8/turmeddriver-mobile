@@ -35,36 +35,36 @@ const initialState = {
 			rooms: "sanatoriumPost",
 			role: "sanatorium",
 		},
-		{
-			id: "2",
-			title: "Бьюти/SPA",
-			key: "spa",
-			keyItem: "spa",
-			preferences: "spaAction",
-			cartCategory: "spalists",
-			cartItemCategory: "spaitems",
-			role: "spa",
-		},
-		{
-			id: "3",
-			title: "Отели",
-			key: "hostels",
-			keyItem: "hostel",
-			preferences: "hostelAction",
-			services: "hostelServic",
-			rooms: "hostelPost",
-			role: "hostel",
-		},
-		{
-			id: "4",
-			title: "Туроператоры",
-			key: "turs",
-			keyItem: "tur",
-			preferences: "turAction",
-			services: "turServic",
-			rooms: "turPost",
-			role: "tur",
-		},
+		// {
+		// 	id: "2",
+		// 	title: "Бьюти/SPA",
+		// 	key: "spa",
+		// 	keyItem: "spa",
+		// 	preferences: "spaAction",
+		// 	cartCategory: "spalists",
+		// 	cartItemCategory: "spaitems",
+		// 	role: "spa",
+		// },
+		// {
+		// 	id: "3",
+		// 	title: "Отели",
+		// 	key: "hostels",
+		// 	keyItem: "hostel",
+		// 	preferences: "hostelAction",
+		// 	services: "hostelServic",
+		// 	rooms: "hostelPost",
+		// 	role: "hostel",
+		// },
+		// {
+		// 	id: "4",
+		// 	title: "Туроператоры",
+		// 	key: "turs",
+		// 	keyItem: "tur",
+		// 	preferences: "turAction",
+		// 	services: "turServic",
+		// 	rooms: "turPost",
+		// 	role: "tur",
+		// },
 		{
 			id: "5",
 			title: "Спорт",
@@ -77,16 +77,16 @@ const initialState = {
 			rooms: "sportPost",
 			role: "sport",
 		},
-		{
-			id: "6",
-			title: "Кафе",
-			key: "cafes",
-			keyItem: "cafe",
-			preferences: "cafeAction",
-			cartCategory: "cafelists",
-			cartItemCategory: "cafeitems",
-			role: "cafe",
-		},
+		// {
+		// 	id: "6",
+		// 	title: "Кафе",
+		// 	key: "cafes",
+		// 	keyItem: "cafe",
+		// 	preferences: "cafeAction",
+		// 	cartCategory: "cafelists",
+		// 	cartItemCategory: "cafeitems",
+		// 	role: "cafe",
+		// },
 	],
 	productsType: {
 		id: "0",
@@ -128,8 +128,9 @@ const productsDataSlice = createSlice({
 				state.loading = true;
 			})
 			.addCase(fetchProductsData.fulfilled, (state, action) => {
-				for (key in action.payload) {
-					state[key] = action.payload[key];
+				const payload = action.payload || {};
+				for (const key in payload) {
+					state[key] = payload[key] || [];
 				}
 				state.productsSortDataList = [];
 				state.textSearch = "";

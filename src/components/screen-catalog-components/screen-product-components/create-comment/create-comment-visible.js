@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
 import { CreateButton } from "src/UTILS";
 import { IsLogged } from "src/context/isLogged";
+import THEME from "src/THEME";
 const CreateCommentVisible = ({
 	value,
 	changeValue,

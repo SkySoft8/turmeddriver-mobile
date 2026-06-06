@@ -4,13 +4,12 @@ import {
 	fetchProductsData,
 	fetchItemProduct,
 } from "src/redux/fetch/fetchProductsData";
-
 import { changeProductsType } from "src/redux/slice/productsDataSlice";
-
 import CategorySlider from "./../category-slider";
-
 import ProductList from "../product-list";
 import LoadingSpinner from "src/components/loading-spinner";
+import { View, Text } from "react-native";
+
 const GetProductList = ({
 	navigation,
 	productsType,
@@ -24,30 +23,43 @@ const GetProductList = ({
 	loading,
 }) => {
 	const dataList =
-		textSearch.length > 0 ? productsSortDataList : productsDataList;
+		(textSearch && textSearch.length > 0) ? 
+		(productsSortDataList || []) : 
+		(productsDataList || []);
 
 	useEffect(() => {
-		//Set object with config keys for api
 		let objType = {};
 
-		objType.key = productsType.key;
-		if (productsType.preferences)
-			objType.preferences = productsType.preferences;
-		if (productsType.cartCategory)
-			objType.cartCategory = productsType.cartCategory;
-		if (productsType.cartItemCategory)
-			objType.cartItemCategory = productsType.cartItemCategory;
-		if (productsType.services) objType.services = productsType.services;
+		if (productsType) {
+			objType.key = productsType.key;
+			if (productsType.preferences)
+				objType.preferences = productsType.preferences;
+			if (productsType.cartCategory)
+				objType.cartCategory = productsType.cartCategory;
+			if (productsType.cartItemCategory)
+				objType.cartItemCategory = productsType.cartItemCategory;
+			if (productsType.services) objType.services = productsType.services;
+		}
 
-		fetchProducts(objType);
+		if (objType.key) {
+			fetchProducts(objType);
+		}
 	}, [productsType]);
+
+	if (!productsType || !defaultProductsTypes) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<Text>Загрузка...</Text>
+			</View>
+		);
+	}
 
 	return (
 		<>
 			<CategorySlider
-				defaultProductsTypes={defaultProductsTypes}
+				defaultProductsTypes={defaultProductsTypes || []}
 				changeType={changeType}
-				productsType={productsType}
+				productsType={productsType || {}}
 			/>
 			{loading && <LoadingSpinner />}
 			{!loading && (
@@ -61,14 +73,26 @@ const GetProductList = ({
 		</>
 	);
 };
+
 const mapStateToProps = ({ productsData }) => {
+	if (!productsData) {
+		return {
+			productsType: null,
+			productsDataList: [],
+			textSearch: "",
+			productsSortDataList: [],
+			defaultProductsTypes: [],
+			loading: false,
+		};
+	}
+
 	const {
 		productsType,
-		productsDataList,
-		textSearch,
-		productsSortDataList,
-		defaultProductsTypes,
-		loading,
+		productsDataList = [],
+		textSearch = "",
+		productsSortDataList = [],
+		defaultProductsTypes = [],
+		loading = false,
 	} = productsData;
 
 	return {
@@ -80,6 +104,7 @@ const mapStateToProps = ({ productsData }) => {
 		loading,
 	};
 };
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchProducts: (type) => dispatch(fetchProductsData(type)),
@@ -88,4 +113,5 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(fetchItemProduct({ id, keyItemType })),
 	};
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(GetProductList);

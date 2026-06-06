@@ -8,11 +8,13 @@ import { NavigationContext } from "src/context/navigation-context";
 const RoomItem = ({ room, bookingAddServices, productItem }) => {
 	const navigation = useContext(NavigationContext);
 	const isLogged = useContext(IsLogged);
-	const { id, title, berth, category, image_post, post, price, tags } = room;
+	const { id, title, berth, category, image_post = [], post, price, tags = [] } = room;
 	let imagesLink = [];
-	image_post.map((image) => {
-		imagesLink.push(image.images);
-	});
+	if (image_post && Array.isArray(image_post)) {
+		image_post.map((image) => {
+			imagesLink.push(image.images);
+		});
+	}
 	return (
 		<View style={styles.wrapHotel}>
 			<SliderHotel images={imagesLink} />

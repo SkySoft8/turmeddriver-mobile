@@ -25,7 +25,7 @@ const Navigation = ({ cartCount, linking }) => {
 				colors: { background: "transparent" },
 			}}
 			linking={linking}
-			fallback={<Text></Text>}
+			fallback={<Text> </Text>}
 		>
 			<BottomTab.Navigator
 				screenOptions={({ route }) => BottomNavigatorConfig(route, cartCount)}

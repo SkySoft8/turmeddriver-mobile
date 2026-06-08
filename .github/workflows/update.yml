@@ -34,6 +34,8 @@ jobs:
         run: npm install
 
       - name: Publish update
-        run: eas update --auto --platform android,ios
+        run: |
+          eas update --auto --platform android
+          eas update --auto --platform ios
         env:
           CI: 1

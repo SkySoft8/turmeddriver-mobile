@@ -35,3 +35,5 @@ jobs:
 
       - name: Publish update
         run: eas update --auto
+        env:
+          CI: 1
